@@ -35,17 +35,28 @@ Frontend:[AIODashboard](https://aiodashboard.netlify.app/) (Deployed with Netlif
 ## 🛠️ Setup
 
 1. Clone repo
+
+   ```bash
    git clone https://github.com/<your-username>/AIODashboard-server.git
    cd AIODashboard-server
+   ```
 
 2. Install dependencies
+
+   ```bash
    npm install
+   ```
 
 3. Configure environment
    Create your .env with your MongoDB URI + PORT
+
+   ```bash
    Example:
    PORT=5000
    MONGODB_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/aiodashboarddb
+   ```
 
-4. Start dev server
+4. Start development server
+   ```bash
    npm run dev
+   ```
