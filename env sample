@@ -1,0 +1,2 @@
+PORT=5000
+MONGODB_URI=mongodb+srv://paulchristianmasayon2020:<db_password>@aiodashboard-db.jz72imt.mongodb.net/databasename?retryWrites=true&w=majority&appName=AIODashboard-DB
