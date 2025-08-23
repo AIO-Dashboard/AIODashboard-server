@@ -7,28 +7,25 @@ Built with **Express.js** and **MongoDB (Mongoose)**, deployed on **Render.com**
 
 ---
 
-## 🚀 Features
+## 📂 Features
 
 - Express.js backend
-- MongoDB Atlas with Mongoose
+- MongoDB Atlas database with Mongoose (aiodashboarddb)
 - Secure `.env` config
 - CORS enabled for frontend
 - Deployed on Render.com
 
 ---
 
-## 🌍 Deployment
+## 🚀 Live Demo
 
-Hosted on Render.com
+🔗 [AIODashboard-server](https://aiodashboard-server.onrender.com/api/orders) and more (Hosted on Render)
+🔗 [AIODashboard Frontend](https://aiodashboard.netlify.app/) (Hosted on Netlify)
+Frontend Repository: 🔗 [Github](https://github.com/AIO-Dashboard/AIODashboard-client)
 
-Live APIs:
-https://aiodashboard-server.onrender.com/api/orders
-https://aiodashboard-server.onrender.com/api/products (todo)
-https://aiodashboard-server.onrender.com/api/users (todo)
-
-Database: MongoDB Atlas (aiodashboarddb)
-
-Frontend:[AIODashboard](https://aiodashboard.netlify.app/) (Deployed with Netlify)
+Other endpoints:
+🔗 https://aiodashboard-server.onrender.com/api/products (in development)
+🔗 https://aiodashboard-server.onrender.com/api/users (in development)
 
 ---
 
