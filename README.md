@@ -19,7 +19,7 @@ Built with **Express.js** and **MongoDB (Mongoose)**, deployed on **Render.com**
 
 ## 🚀 Live Demo
 
-🔗 [AIODashboard-server](https://aiodashboard-server.onrender.com/api/orders) and more (Hosted on Render)
+🔗 [AIODashboard-server](https://aiodashboard-server.onrender.com/api/orders) (Hosted on Render)
 
 🔗 [AIODashboard Frontend](https://aiodashboard.netlify.app/) (Hosted on Netlify)
 
