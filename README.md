@@ -28,7 +28,7 @@ https://aiodashboard-server.onrender.com/api/users (todo)
 
 Database: MongoDB Atlas (aiodashboarddb)
 
-Frontend: https://aiodashboard.netlify.app/ (Deployed with Netlify)
+Frontend:[AIODashboard](https://aiodashboard.netlify.app/) (Deployed with Netlify)
 
 ---
 
