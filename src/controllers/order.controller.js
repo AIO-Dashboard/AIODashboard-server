@@ -5,10 +5,28 @@ const asyncHandler = (fn) => (req, res, next) => {
   Promise.resolve(fn(req, res, next)).catch(next);
 };
 
-export const listOrders = asyncHandler(async (_req, res) => {
-  const orders = await Order.find().sort({ createdAt: -1 });
-  console.log(orders);
-  res.json(orders);
+export const listOrders = asyncHandler(async (req, res) => {
+  // defaults if frontend doesn't send query params
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 25;
+  const skip = (page - 1) * limit;
+
+  // query total count first (but only once, without fetching all)
+  const total = await Order.countDocuments();
+
+  // fetch only the needed docs
+  const orders = await Order.find()
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit);
+
+  res.json({
+    page,
+    limit,
+    skip,
+    total,
+    orders: orders,
+  });
 });
 
 export const getOrder = asyncHandler(async (req, res) => {
