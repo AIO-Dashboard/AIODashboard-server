@@ -1,3 +1,5 @@
+import serverless from "serverless-http";
+
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
@@ -19,4 +21,6 @@ app.use("/api/orders", orderRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-export default app;
+let handler = serverless(app);
+
+export { handler, app };
