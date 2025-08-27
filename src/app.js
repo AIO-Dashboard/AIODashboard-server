@@ -21,6 +21,6 @@ app.use("/api/orders", orderRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-let handler = serverless(app);
+export const handler = serverless(app);
 
-export { handler, app };
+export { app };
