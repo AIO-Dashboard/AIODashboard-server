@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import Customer from "../models/Customer.js";
 
+import createError from "../utils/createError.js";
+
 const asyncHandler = (fn) => (req, res, next) => {
   Promise.resolve(fn(req, res, next)).catch(next);
 };
@@ -34,12 +36,12 @@ export const getCustomer = asyncHandler(async (req, res) => {
 
   if (!mongoose.isValidObjectId(id)) {
     // return res.status(400).json({ message: "Invalid ID" });
-    throw new Error({ status: 400, message: "Invalid ID" });
+    throw createError(400, "Invalid ID");
   }
   const customer = await Customer.findById(id);
   if (!customer) {
     // return res.status(404).json({ message: "Customer not found" });
-    throw new Error({ status: 404, message: "Customer not found" });
+    throw createError(404, "Customer not found");
   }
   res.json(customer);
 });
@@ -48,12 +50,12 @@ export const deleteCustomer = asyncHandler(async (req, res) => {
   const { id } = req.params;
   if (!mongoose.isValidObjectId(id)) {
     // return res.status(400).json({ message: "Invalid ID" });
-    throw new Error({ status: 400, message: "Invalid ID" });
+    throw createError(400, "Invalid ID");
   }
   const customer = await Customer.findByIdAndDelete(id);
   if (!customer) {
     // return res.status(404).json({ message: "Customer not found" });
-    throw new Error({ status: 404, message: "Customer not found" });
+    throw createError(404, "Customer not found");
   }
   // res.status(204).send('Customer deleted');
   res.status(204).send();
@@ -64,7 +66,7 @@ export const deleteCustomer = asyncHandler(async (req, res) => {
 //   const { title, done } = req.body;
 //   if (!title?.trim())
 //     return res.status(400).json({ message: "Title is required" });
-// throw new Error({ status: 400, message: "Title is required" });
+// throw createError(400, "Title is required");
 //   const customer = await Customer.create({ title: title.trim(), done: !!done });
 //   res.status(201).json(customer);
 // });
@@ -73,14 +75,14 @@ export const deleteCustomer = asyncHandler(async (req, res) => {
 //   const { id } = req.params;
 //   if (!mongoose.isValidObjectId(id))
 //     return res.status(400).json({ message: "Invalid ID" });
-// throw new Error({ status: 400, message: "Invalid ID" });
+// throw createError(400, "Invalid ID");
 //   const customer = await Customer.findByIdAndUpdate(id, req.body, {
 //     new: true,
 //     runValidators: true,
 //   });
 // if (!customer) {
 //   // return res.status(404).json({ message: "Customer not found" });
-//   throw new Error({ status: 404, message: "Customer not found" });
+// throw createError(404, "Customer not found");
 // }
 //   res.json(customer);
 // });

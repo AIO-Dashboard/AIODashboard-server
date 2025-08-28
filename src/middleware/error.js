@@ -3,6 +3,9 @@ export function notFound(_req, res, _next) {
 }
 
 export function errorHandler(err, _req, res, _next) {
+  console.error(
+    "-----------------------------------------------------------------------------"
+  );
   console.error(err, process.env.NODE_ENV);
   const status = err.status || 500;
   res.status(status).json({

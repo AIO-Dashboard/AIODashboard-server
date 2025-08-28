@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import Product from "../models/Product.js";
 
+import createError from "../utils/createError.js";
+
 const asyncHandler = (fn) => (req, res, next) => {
   Promise.resolve(fn(req, res, next)).catch(next);
 };
@@ -33,13 +35,19 @@ export const getProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.isValidObjectId(id)) {
+    console.log(
+      "error is here ==========================================================="
+    );
     // return res.status(400).json({ message: "Invalid ID" });
-    throw new Error({ status: 400, message: "Invalid ID" });
+    throw createError(400, "Invalid ID");
   }
   const product = await Product.findById(id);
   if (!product) {
+    console.log(
+      "error is here ===========================================================2"
+    );
     // return res.status(404).json({ message: "Product not found" });
-    throw new Error({ status: 404, message: "Product not found" });
+    throw createError(404, "Product not found");
   }
   res.json(product);
 });
@@ -48,12 +56,12 @@ export const deleteProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
   if (!mongoose.isValidObjectId(id)) {
     // return res.status(400).json({ message: "Invalid ID" });
-    throw new Error({ status: 400, message: "Invalid ID" });
+    throw createError(400, "Invalid ID");
   }
   const product = await Product.findByIdAndDelete(id);
   if (!product) {
     // return res.status(404).json({ message: "Product not found" });
-    throw new Error({ status: 404, message: "Product not found" });
+    throw createError(404, "Product not found");
   }
   // res.status(204).send('Product deleted');
   res.status(204).send();
@@ -64,7 +72,7 @@ export const deleteProduct = asyncHandler(async (req, res) => {
 //   const { title, done } = req.body;
 //   if (!title?.trim())
 //     return res.status(400).json({ message: "Title is required" });
-// throw new Error({ status: 400, message: "Title is required" });
+// throw createError(400, "Title is required");
 //   const product = await Product.create({ title: title.trim(), done: !!done });
 //   res.status(201).json(product);
 // });
@@ -73,14 +81,14 @@ export const deleteProduct = asyncHandler(async (req, res) => {
 //   const { id } = req.params;
 //   if (!mongoose.isValidObjectId(id))
 //     return res.status(400).json({ message: "Invalid ID" });
-// throw new Error({ status: 400, message: "Invalid ID" });
+// throw createError(400, "Invalid ID");
 //   const product = await Product.findByIdAndUpdate(id, req.body, {
 //     new: true,
 //     runValidators: true,
 //   });
 // if (!product) {
 //   // return res.status(404).json({ message: "Product not found" });
-//   throw new Error({ status: 404, message: "Product not found" });
+// throw createError(404, "Product not found");
 // }
 //   res.json(product);
 // });
