@@ -61,16 +61,6 @@ export const deleteCustomer = asyncHandler(async (req, res) => {
   res.status(204).send();
 });
 
-// NA
-// export const createCustomer = asyncHandler(async (req, res) => {
-//   const { title, done } = req.body;
-//   if (!title?.trim())
-//     return res.status(400).json({ message: "Title is required" });
-// throw createError(400, "Title is required");
-//   const customer = await Customer.create({ title: title.trim(), done: !!done });
-//   res.status(201).json(customer);
-// });
-
 // export const updateCustomer = asyncHandler(async (req, res) => {
 //   const { id } = req.params;
 //   if (!mongoose.isValidObjectId(id))

@@ -60,29 +60,3 @@ export const deleteOrder = asyncHandler(async (req, res) => {
   // res.status(204).send('Order deleted');
   res.status(204).send();
 });
-
-// NA
-// export const createOrder = asyncHandler(async (req, res) => {
-//   const { title, done } = req.body;
-//   if (!title?.trim())
-//     return res.status(400).json({ message: "Title is required" });
-// throw createError(400, "Title is required");
-//   const order = await Order.create({ title: title.trim(), done: !!done });
-//   res.status(201).json(order);
-// });
-
-// export const updateOrder = asyncHandler(async (req, res) => {
-//   const { id } = req.params;
-//   if (!mongoose.isValidObjectId(id))
-//     return res.status(400).json({ message: "Invalid ID" });
-// throw createError(400, "Invalid ID");
-//   const order = await Order.findByIdAndUpdate(id, req.body, {
-//     new: true,
-//     runValidators: true,
-//   });
-// if (!order) {
-//   // return res.status(404).json({ message: "Order not found" });
-// throw createError(404, "Order not found");
-// }
-//   res.json(order);
-// });

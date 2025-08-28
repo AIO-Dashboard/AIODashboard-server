@@ -17,7 +17,9 @@ router.get("/:id", getCustomer);
 
 // admin only
 router.delete("/:id", deleteCustomer);
-// router.post("/", createCustomer);
 // router.patch("/:id", updateCustomer);
+
+// NA
+// router.post("/", createCustomer);
 
 export default router;

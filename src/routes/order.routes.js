@@ -17,6 +17,8 @@ router.get("/:id", getOrder);
 
 // admin only
 router.delete("/:id", deleteOrder);
+
+// NA
 // router.post("/", createOrder);
 // router.patch("/:id", updateOrder);
 
