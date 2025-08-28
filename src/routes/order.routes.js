@@ -9,6 +9,8 @@ import {
 
 const router = Router();
 
+// Todo: Use swagger to document the APIs
+
 router.get("/", listOrders);
 router.get("/:id", getOrder);
 router.delete("/:id", deleteOrder);
