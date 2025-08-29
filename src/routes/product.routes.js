@@ -7,6 +7,8 @@ import {
   // updateProduct,
 } from "../controllers/product.controller.js";
 
+import { auth, authorize } from "../middleware/auth.js";
+
 const router = Router();
 
 // Todo: Use swagger to document the APIs
@@ -16,8 +18,8 @@ router.get("/", listProducts);
 router.get("/:id", getProduct);
 
 // admin only
-router.delete("/:id", deleteProduct);
-// router.post("/", createProduct);
-// router.patch("/:id", updateProduct);
+router.delete("/:id", auth, authorize("admin"), deleteProduct);
+// router.post("/", auth, authorize('admin'),  createProduct);
+// router.patch("/:id", auth, authorize('admin'),  updateProduct);
 
 export default router;

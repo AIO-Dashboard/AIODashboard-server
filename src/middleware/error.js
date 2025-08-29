@@ -1,5 +1,9 @@
 export function notFound(_req, res, _next) {
-  res.status(404).json({ message: "Not Found" });
+  res.status(404).json({
+    success: false,
+    status: 404,
+    message: "Not Found",
+  });
 }
 
 export function errorHandler(err, _req, res, _next) {
@@ -17,4 +21,4 @@ export function errorHandler(err, _req, res, _next) {
 }
 
 // Todo: Add custom error throws from controllers when applicable
-// e.g throw new Error({ status: 401, message: "Unauthorized" });
+// e.g throw createError(401, "Unauthorized");

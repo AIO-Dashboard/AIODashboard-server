@@ -7,6 +7,8 @@ import {
   // updateOrder,
 } from "../controllers/order.controller.js";
 
+import { auth, authorize } from "../middleware/auth.js";
+
 const router = Router();
 
 // Todo: Use swagger to document the APIs
@@ -16,7 +18,7 @@ router.get("/", listOrders);
 router.get("/:id", getOrder);
 
 // admin only
-router.delete("/:id", deleteOrder);
+router.delete("/:id", auth, authorize("admin"), deleteOrder);
 
 // NA
 // router.post("/", createOrder);
