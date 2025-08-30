@@ -5,6 +5,7 @@ import cors from "cors";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 
+import authRoutes from "./routes/auth.routes.js";
 import productRoutes from "./routes/product.routes.js";
 import customerRoutes from "./routes/customer.routes.js";
 import orderRoutes from "./routes/order.routes.js";
@@ -38,6 +39,8 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 app.get("/health", (_req, res) => res.json({ status: "ok" }));
+
+app.use("/api/auth", authRoutes);
 
 app.use("/api/products", productRoutes);
 app.use("/api/customers", customerRoutes);
