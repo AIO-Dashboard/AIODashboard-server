@@ -20,7 +20,8 @@ const customerSchema = new mongoose.Schema(
 
     hair: {
       color: String,
-      type: String,
+      // prettier-ignore
+      "type": { type: String },
     },
 
     ip: String,
