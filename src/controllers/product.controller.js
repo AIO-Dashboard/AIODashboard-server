@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import Product from "../models/Product.js";
 
 import createError from "../utils/createError.js";
+import { sendResponse } from "../utils/sendResponse.js";
 
 const asyncHandler = (fn) => (req, res, next) => {
   Promise.resolve(fn(req, res, next)).catch(next);
@@ -22,12 +23,15 @@ export const listProducts = asyncHandler(async (req, res) => {
     .skip(skip)
     .limit(limit);
 
-  res.json({
-    page,
-    limit,
-    skip,
-    total,
-    products: products,
+  // res.json({
+  //   page,
+  //   limit,
+  //   skip,
+  //   total,
+  //   products: products,
+  // });
+  sendResponse(res, {
+    data: { page, limit, skip, total, products: products },
   });
 });
 
@@ -49,7 +53,8 @@ export const getProduct = asyncHandler(async (req, res) => {
     // return res.status(404).json({ message: "Product not found" });
     throw createError(404, "Product not found");
   }
-  res.json(product);
+  // res.json(product);
+  sendResponse(res, { data: product });
 });
 
 export const deleteProduct = asyncHandler(async (req, res) => {
@@ -64,7 +69,8 @@ export const deleteProduct = asyncHandler(async (req, res) => {
     throw createError(404, "Product not found");
   }
   // res.status(204).send('Product deleted');
-  res.status(204).send();
+  // res.status(204).send();
+  sendResponse(res, { status: 204 });
 });
 
 // NA

@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
 import createError from "../utils/createError.js";
+import { sendResponse } from "../utils/sendResponse.js";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = "1h";
@@ -23,9 +24,13 @@ export async function register(req, res, next) {
       role: role || "user",
     });
 
-    res.status(201).json({
-      message: "User registered",
-      user: { id: user._id, username: user.username, role: user.role },
+    // res.status(201).json({
+    //     message: "User registered",
+    //     user: { id: user._id, username: user.username, role: user.role },
+    // });
+    sendResponse(res, {
+      status: 201,
+      data: { id: user._id, username: user.username, role: user.role },
     });
   } catch (err) {
     return next(err);
