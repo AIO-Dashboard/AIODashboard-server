@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import Order from "../models/Order.js";
 
 import createError from "../utils/createError.js";
+import { sendResponse } from "../utils/sendResponse.js";
 
 const asyncHandler = (fn) => (req, res, next) => {
   Promise.resolve(fn(req, res, next)).catch(next);
@@ -10,7 +11,7 @@ const asyncHandler = (fn) => (req, res, next) => {
 export const listOrders = asyncHandler(async (req, res) => {
   // defaults if frontend doesn't send query params
   const page = Number(req.query.page) || 1;
-  const limit = Number(req.query.limit) || 25;
+  const limit = Number(req.query.limit) || 0;
   const skip = (page - 1) * limit;
 
   // query total count first (but only once, without fetching all)
@@ -22,12 +23,21 @@ export const listOrders = asyncHandler(async (req, res) => {
     .skip(skip)
     .limit(limit);
 
-  res.json({
-    page,
-    limit,
-    skip,
-    total,
-    orders: orders,
+  // res.json({
+  //   page,
+  //   limit,
+  //   skip,
+  //   total,
+  //   orders: orders,
+  // });
+  sendResponse(res, {
+    data: {
+      page,
+      limit,
+      skip,
+      total,
+      orders: orders,
+    },
   });
 });
 
@@ -43,7 +53,8 @@ export const getOrder = asyncHandler(async (req, res) => {
     // return res.status(404).json({ message: "Order not found" });
     throw createError(404, "Order not found");
   }
-  res.json(order);
+  // res.json(order);
+  sendResponse(res, { data: order });
 });
 
 export const deleteOrder = asyncHandler(async (req, res) => {
@@ -58,5 +69,6 @@ export const deleteOrder = asyncHandler(async (req, res) => {
     throw createError(404, "Order not found");
   }
   // res.status(204).send('Order deleted');
-  res.status(204).send();
+  // res.status(204).send();
+  sendResponse(res, { status: 204 });
 });
