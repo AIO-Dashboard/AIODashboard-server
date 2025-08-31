@@ -11,7 +11,7 @@ const asyncHandler = (fn) => (req, res, next) => {
 export const listCustomers = asyncHandler(async (req, res) => {
   // defaults if frontend doesn't send query params
   const page = Number(req.query.page) || 1;
-  const limit = Number(req.query.limit) || 25;
+  const limit = Number(req.query.limit) || 0;
   const skip = (page - 1) * limit;
 
   // query total count first (but only once, without fetching all)
