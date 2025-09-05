@@ -55,14 +55,7 @@ const orderSchema = new mongoose.Schema(
     status: { type: String, default: "Processing" },
     statusHistory: [statusHistorySchema],
 
-    customer: {
-      id: Number, // Todo: fix the customer id fields in the order objects uploaded (still pointing to id instead of _id))
-      name: String,
-      email: String,
-      address: addressSchema,
-      phone: String,
-      role: { type: String, enum: ["user", "admin"], default: "user" },
-    },
+    customerId: { type: mongoose.Schema.Types.ObjectId, ref: "Customer" },
 
     shippingAddress: addressSchema,
     billingAddress: addressSchema,

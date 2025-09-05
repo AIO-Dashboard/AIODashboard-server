@@ -21,7 +21,8 @@ export const listOrders = asyncHandler(async (req, res) => {
   const orders = await Order.find()
     .sort({ createdAt: -1 })
     .skip(skip)
-    .limit(limit);
+    .limit(limit)
+    .populate("customerId", "firstName lastName email");
 
   // res.json({
   //   page,
@@ -48,7 +49,10 @@ export const getOrder = asyncHandler(async (req, res) => {
     // return res.status(400).json({ message: "Invalid ID" });
     throw createError(400, "Invalid ID");
   }
-  const order = await Order.findById(id);
+  const order = await Order.findById(id).populate(
+    "customerId",
+    "firstName lastName email role phone"
+  );
   if (!order) {
     // return res.status(404).json({ message: "Order not found" });
     throw createError(404, "Order not found");
